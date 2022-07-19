@@ -4,7 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import DarkModeToggle from "./DarkModeToggle";
 import { ColorModeContext } from "../App";
 
-const ContainerFooter = (props) => {
+const Footer = (props) => {
     const colorMode = React.useContext(ColorModeContext);
 
     return (
@@ -20,8 +20,9 @@ const ContainerFooter = (props) => {
                     </span>
                 </Toolbar>
             </AppBar>
+            <Toolbar className="AppBarSpacer" />
         </footer>
     );
 };
 
-export default ContainerFooter;
+export default Footer;
