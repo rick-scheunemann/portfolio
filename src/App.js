@@ -33,10 +33,15 @@ function App() {
             createTheme({
                 palette: {
                     mode,
-
                     bright: {
                         // light: '#ffa726',
                         main: "#ffffee",
+                        // dark: '#ef6c00',
+                        // contrastText: 'rgba(0, 0, 0, 0.87)',
+                    },
+                    dim: {
+                        // light: '#ffa726',
+                        main: "#202020",
                         // dark: '#ef6c00',
                         // contrastText: 'rgba(0, 0, 0, 0.87)',
                     },
