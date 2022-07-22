@@ -2,9 +2,9 @@ import Grid from "@mui/material/Grid";
 
 import CardItem from "./CardItem";
 
-const titles = ["one", "two", "three", "four"];
-
 const CardDeck = (props) => {
+    const { projects } = props;
+
     return (
         <Grid
             container
@@ -14,8 +14,15 @@ const CardDeck = (props) => {
             justifyContent="space-evenly"
             alignItems="center"
         >
-            {titles.map((t) => (
-                <CardItem title={t} />
+            {projects.map((p) => (
+                <CardItem
+                    key={p.id}
+                    title={p.title}
+                    description={p.body}
+                    image="placeholder"
+                    imageAlt="placeholder"
+                    link="placeholder.com"
+                />
             ))}
         </Grid>
     );

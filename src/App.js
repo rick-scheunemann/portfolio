@@ -67,13 +67,31 @@ function App() {
     //     },
     // }
 
+    // content
+    // https://www.freecodecamp.org/news/how-to-consume-rest-apis-in-react/
+    const [projects, setProjects] = React.useState([]);
+
+    React.useEffect(() => {
+        const fetchProject = async () => {
+           const response = await fetch(
+              'https://jsonplaceholder.typicode.com/posts?_limit=15'
+           );
+           const data = await response.json();
+           console.log(data);
+           setProjects(data);
+        };
+        fetchProject();
+     }, []);
+
+    
+
     return (
         <ColorModeContext.Provider value={colorMode}>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <Container className="App">
                     <Header />
-                    <Main />
+                    <Main projects={projects} />
                     <Footer />
                 </Container>
             </ThemeProvider>

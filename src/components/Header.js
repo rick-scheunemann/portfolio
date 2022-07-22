@@ -9,6 +9,7 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
+import styled from "@emotion/styled";
 
 const sections = ["About", "Projects", "Contact"];
 
@@ -22,6 +23,8 @@ const Header = (props) => {
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
+
+    const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
     return (
         <header>
@@ -132,7 +135,8 @@ const Header = (props) => {
                     </Box>
                 </Toolbar>
             </AppBar>
-            <Toolbar className="AppBarSpacer" />
+            <Offset />
+            {/* <Toolbar className="AppBarSpacer" /> */}
         </header>
     );
 };
