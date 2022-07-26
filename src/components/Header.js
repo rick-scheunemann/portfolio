@@ -49,7 +49,6 @@ const Header = (props) => {
                     >
                         PORT
                     </Typography>
-
                     <Box
                         sx={{
                             flexGrow: 1,
@@ -136,7 +135,6 @@ const Header = (props) => {
                 </Toolbar>
             </AppBar>
             <Offset />
-            {/* <Toolbar className="AppBarSpacer" /> */}
         </header>
     );
 };

@@ -67,23 +67,28 @@ function App() {
     //     },
     // }
 
+    // media size
+    const isDesktop = useMediaQuery("(min-width:600px)");
+
     // content
     // https://www.freecodecamp.org/news/how-to-consume-rest-apis-in-react/
     const [projects, setProjects] = React.useState([]);
 
     React.useEffect(() => {
         const fetchProject = async () => {
-           const response = await fetch(
-              'https://jsonplaceholder.typicode.com/posts?_limit=15'
-           );
-           const data = await response.json();
-           console.log(data);
-           setProjects(data);
+            try {
+                const response = await fetch(
+                    "https://jsonplaceholder.typicode.com/posts?_limit=15"
+                );
+                const data = await response.json();
+                console.log(data);
+                setProjects(data);
+            } catch (e) {
+                console.log(e);
+            }
         };
         fetchProject();
-     }, []);
-
-    
+    }, []);
 
     return (
         <ColorModeContext.Provider value={colorMode}>
@@ -91,7 +96,7 @@ function App() {
                 <CssBaseline />
                 <Container className="App">
                     <Header />
-                    <Main projects={projects} />
+                    <Main projects={projects} isDesktop={isDesktop} />
                     <Footer />
                 </Container>
             </ThemeProvider>
