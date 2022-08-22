@@ -5,7 +5,7 @@ import CardDeck from "./CardDeck";
 import MainAccordion from "./MainAccordion";
 
 const Main = (props) => {
-    const { projects, isDesktop } = props;
+    const { projects, isDesktop, activeSection, setActiveSection } = props;
 
     return (
         <Box
@@ -21,18 +21,18 @@ const Main = (props) => {
                     justifyContent="center"
                     alignItems="center"
                 >
-                    <Grid item xs={12} md={10}>
+                    <Grid item xs={12} md={10} id="about-scroll" sx={{scrollMarginTop:"50px"}}>
                         <div>
                             About {`res: ${isDesktop} `}
                             dfl;gkajga;lkjasd;lsakdjfsa;ldkfjsdl;fkjsdal;kfjsadl;kvmsv;lk
                             sflas ;lkj ;alskdvj as;lk
                         </div>
                     </Grid>
-                    <Grid item>
+                    <Grid item id="projects-scroll" sx={{scrollMarginTop:"50px"}}>
                         <CardDeck projects={projects} />
                         {/* <Item>Projects</Item> */}
                     </Grid>
-                    <Grid item>
+                    <Grid item id="contact-scroll">
                         <div>
                             Contact About
                             dfl;gkajga;lkjasd;lsakdjfsa;ldkfjsdl;fkjsdal;kfjsadl;kvmsv;lk
@@ -42,7 +42,13 @@ const Main = (props) => {
                 </Grid>
             )}
 
-            {!isDesktop && <MainAccordion projects={projects} />}
+            {!isDesktop && (
+                <MainAccordion
+                    projects={projects}
+                    activeSection={activeSection}
+                    setActiveSection={setActiveSection}
+                />
+            )}
         </Box>
     );
 };

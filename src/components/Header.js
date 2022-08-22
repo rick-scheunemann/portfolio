@@ -11,18 +11,32 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import styled from "@emotion/styled";
 
-const sections = ["About", "Projects", "Contact"];
+const sections = ["about", "projects", "contact"];
 
 const Header = (props) => {
+
+    const { activeSection, setActiveSection } = props;
+
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
 
-    const handleCloseNavMenu = () => {
+    const handleCloseNavMenu = (event) => {
+        console.log("clostNavMenu: ", event.currentTarget.id);
+        setActiveSection(event.currentTarget.id);
         setAnchorElNav(null);
     };
+
+    const handleButtonScrollTo = (event) => {
+        console.log("handleButtonScrollTo: ", event.currentTarget.id);
+
+        const section = document.querySelector( `#${event.currentTarget.id}-scroll` );
+        section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+
+        setActiveSection(event.currentTarget.id);
+    }
 
     const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -30,6 +44,7 @@ const Header = (props) => {
         <header>
             <AppBar postition="static" color="primary">
                 <Toolbar>
+                    {/* xs: none, md: flex */}
                     <LogoIcon
                         sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
                     />
@@ -49,6 +64,8 @@ const Header = (props) => {
                     >
                         PORT
                     </Typography>
+
+                    {/* xs: flex, md: none */}
                     <Box
                         sx={{
                             flexGrow: 1,
@@ -86,6 +103,7 @@ const Header = (props) => {
                             {sections.map((section) => (
                                 <MenuItem
                                     key={section}
+                                    id={section}
                                     onClick={handleCloseNavMenu}
                                 >
                                     <Typography textAlign="center">
@@ -116,6 +134,8 @@ const Header = (props) => {
                     >
                         PORT
                     </Typography>
+
+                    {/* xs: none, md: flex */}
                     <Box
                         sx={{
                             flexGrow: 1,
@@ -125,7 +145,8 @@ const Header = (props) => {
                         {sections.map((section) => (
                             <Button
                                 key={section}
-                                onClick={handleCloseNavMenu}
+                                id={section}
+                                onClick={handleButtonScrollTo}
                                 sx={{ my: 2, color: "white", display: "block" }}
                             >
                                 {section}

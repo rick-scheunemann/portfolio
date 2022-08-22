@@ -90,13 +90,23 @@ function App() {
         fetchProject();
     }, []);
 
+    const [activeSection, setActiveSection] = React.useState("about");
+
     return (
         <ColorModeContext.Provider value={colorMode}>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <Container className="App">
-                    <Header />
-                    <Main projects={projects} isDesktop={isDesktop} />
+                    <Header 
+                        activeSection={activeSection}
+                        setActiveSection={setActiveSection}
+                    />
+                    <Main
+                        isDesktop={isDesktop}
+                        projects={projects}
+                        activeSection={activeSection}
+                        setActiveSection={setActiveSection}
+                    />
                     <Footer />
                 </Container>
             </ThemeProvider>
