@@ -15,18 +15,27 @@ const sections = ["about", "projects", "contact"];
 
 const Header = (props) => {
 
-    const { activeSection, setActiveSection } = props;
+    const { isDesktop, siteTitle, layoutState, setLayoutState } = props;
 
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    // const [anchorElNav, setAnchorElNav] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
+        setLayoutState({
+            ...layoutState,
+            anchorElNav: event.currentTarget
+        })
     };
 
     const handleCloseNavMenu = (event) => {
-        console.log("clostNavMenu: ", event.currentTarget.id);
-        setActiveSection(event.currentTarget.id);
-        setAnchorElNav(null);
+        console.log("closeNavMenu: ", event.currentTarget.id);
+
+        console.log(isDesktop); // desktop > 600px
+
+        setLayoutState({
+            ...layoutState,
+            activeSection: event.currentTarget.id,
+            anchorElNav: null
+        })
     };
 
     const handleButtonScrollTo = (event) => {
@@ -35,7 +44,23 @@ const Header = (props) => {
         const section = document.querySelector( `#${event.currentTarget.id}-scroll` );
         section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
 
-        setActiveSection(event.currentTarget.id);
+        setLayoutState({
+            ...layoutState,
+            activeSection: event.currentTarget.id,
+        })
+    }
+
+    const handleCloseAndScroll = (event) => {
+        console.log("handleCloseAndScroll: ", event.currentTarget.id);
+
+        const section = document.querySelector( `#${event.currentTarget.id}-scroll` );
+        section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+
+        setLayoutState({
+            ...layoutState,
+            activeSection: event.currentTarget.id,
+            anchorElNav: null
+        })
     }
 
     const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
@@ -44,9 +69,9 @@ const Header = (props) => {
         <header>
             <AppBar postition="static" color="primary">
                 <Toolbar>
-                    {/* xs: none, md: flex */}
+                    {/* xs: none, sm: flex */}
                     <LogoIcon
-                        sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+                        sx={{ display: { xs: "none", sm: "flex" }, mr: 1 }}
                     />
                     <Typography
                         variant="h6"
@@ -55,21 +80,39 @@ const Header = (props) => {
                         href="/"
                         sx={{
                             mr: 2,
-                            display: { xs: "none", md: "flex" },
+                            display: { xs: "none", sm: "flex" },
                             fontWeight: 700,
                             letterSpacing: ".3rem",
                             color: "inherit",
                             textDecoration: "none",
                         }}
                     >
-                        PORT
+                        {siteTitle}
                     </Typography>
 
-                    {/* xs: flex, md: none */}
                     <Box
                         sx={{
                             flexGrow: 1,
-                            display: { xs: "flex", md: "none" },
+                            display: { xs: "none", sm: "flex" },
+                        }}
+                    >
+                        {sections.map((section) => (
+                            <Button
+                                key={section}
+                                id={section}
+                                onClick={handleButtonScrollTo}
+                                sx={{ my: 2, color: "white", display: "block" }}
+                            >
+                                {section}
+                            </Button>
+                        ))}
+                    </Box>
+
+                    {/* xs: flex, sm: none */}
+                    <Box
+                        sx={{
+                            flexGrow: 1,
+                            display: { xs: "flex", sm: "none" },
                         }}
                     >
                         <IconButton
@@ -84,7 +127,7 @@ const Header = (props) => {
                         </IconButton>
                         <Menu
                             id="menu-appbar"
-                            anchorEl={anchorElNav}
+                            anchorEl={layoutState.anchorElNav}
                             anchorOrigin={{
                                 vertical: "bottom",
                                 horizontal: "left",
@@ -94,17 +137,17 @@ const Header = (props) => {
                                 vertical: "top",
                                 horizontal: "left",
                             }}
-                            open={Boolean(anchorElNav)}
+                            open={Boolean(layoutState.anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{
-                                display: { xs: "block", md: "none" },
+                                display: { xs: "block", sm: "none" },
                             }}
                         >
                             {sections.map((section) => (
                                 <MenuItem
                                     key={section}
                                     id={section}
-                                    onClick={handleCloseNavMenu}
+                                    onClick={isDesktop ? handleCloseAndScroll : handleCloseNavMenu}
                                 >
                                     <Typography textAlign="center">
                                         {section}
@@ -115,7 +158,7 @@ const Header = (props) => {
                     </Box>
 
                     <LogoIcon
-                        sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+                        sx={{ display: { xs: "flex", sm: "none" }, mr: 1 }}
                     />
                     <Typography
                         variant="h5"
@@ -124,7 +167,7 @@ const Header = (props) => {
                         href=""
                         sx={{
                             mr: 2,
-                            display: { xs: "flex", md: "none" },
+                            display: { xs: "flex", sm: "none" },
                             flexGrow: 1,
                             fontWeight: 700,
                             letterSpacing: ".3rem",
@@ -132,27 +175,8 @@ const Header = (props) => {
                             textDecoration: "none",
                         }}
                     >
-                        PORT
+                        {siteTitle}
                     </Typography>
-
-                    {/* xs: none, md: flex */}
-                    <Box
-                        sx={{
-                            flexGrow: 1,
-                            display: { xs: "none", md: "flex" },
-                        }}
-                    >
-                        {sections.map((section) => (
-                            <Button
-                                key={section}
-                                id={section}
-                                onClick={handleButtonScrollTo}
-                                sx={{ my: 2, color: "white", display: "block" }}
-                            >
-                                {section}
-                            </Button>
-                        ))}
-                    </Box>
                 </Toolbar>
             </AppBar>
             <Offset />

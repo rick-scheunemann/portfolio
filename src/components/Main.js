@@ -5,7 +5,7 @@ import CardDeck from "./CardDeck";
 import MainAccordion from "./MainAccordion";
 
 const Main = (props) => {
-    const { projects, isDesktop, activeSection, setActiveSection } = props;
+    const { projects, isDesktop, layoutState, setLayoutState } = props;
 
     return (
         <Box
@@ -45,8 +45,8 @@ const Main = (props) => {
             {!isDesktop && (
                 <MainAccordion
                     projects={projects}
-                    activeSection={activeSection}
-                    setActiveSection={setActiveSection}
+                    layoutState={layoutState}
+                    setLayoutState={setLayoutState}
                 />
             )}
         </Box>

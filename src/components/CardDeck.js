@@ -21,7 +21,7 @@ const CardDeck = (props) => {
                     description={p.body}
                     image="placeholder"
                     imageAlt="placeholder"
-                    link="placeholder.com"
+                    link="www.google.com"
                 />
             ))}
         </Grid>

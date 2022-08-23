@@ -51,21 +51,28 @@ function App() {
     );
 
     /* theme overrides */
-    // theme = {
-    //     ...theme,
-    //     components: {
-    //         MuiContainer: {
-    //             styleOverrides: {
-    //                 root: {
-    //                     [theme.breakpoints.up("xs")]: {
-    //                         paddingLeft: "8px",
-    //                         paddingRight: "8px",
-    //                     },
-    //                 },
-    //             },
-    //         },
-    //     },
-    // }
+    theme = {
+        ...theme,
+        components: {
+            MuiCardActionArea: {
+                styleOverrides: {
+                    root: {
+                    "& .hidden-button": {
+                        display: "none"
+                    },
+                    "&:hover .hidden-button": {
+                        display: "flex",
+                        position: "absolute",
+                        top: "10px",
+                        right: "10px"
+                    }
+                    }
+                }
+            },
+        },
+    }
+
+    const siteTitle = "TEST";
 
     // media size
     const isDesktop = useMediaQuery("(min-width:600px)");
@@ -90,22 +97,28 @@ function App() {
         fetchProject();
     }, []);
 
-    const [activeSection, setActiveSection] = React.useState("about");
+    // const [activeSection, setActiveSection] = React.useState("about");
+    const [layoutState, setLayoutState] = React.useState({
+        activeSection: "about",
+        anchorElNav: null,
+    })
 
     return (
         <ColorModeContext.Provider value={colorMode}>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <Container className="App">
-                    <Header 
-                        activeSection={activeSection}
-                        setActiveSection={setActiveSection}
+                <Container className="App" maxWidth="xl">
+                    <Header
+                        isDesktop={isDesktop}
+                        siteTitle={siteTitle}
+                        layoutState={layoutState}
+                        setLayoutState={setLayoutState}
                     />
                     <Main
                         isDesktop={isDesktop}
                         projects={projects}
-                        activeSection={activeSection}
-                        setActiveSection={setActiveSection}
+                        layoutState={layoutState}
+                        setLayoutState={setLayoutState}
                     />
                     <Footer />
                 </Container>

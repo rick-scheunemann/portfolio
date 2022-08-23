@@ -46,18 +46,24 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 const MainAccordion = (props) => {
 
-    const { projects, activeSection, setActiveSection } = props;
+    const { projects, layoutState, setLayoutState } = props;
 
     // const [expanded, setExpanded] = React.useState("About");
 
     const handleChange = (panel) => (event, newExpanded) => {
-        setActiveSection(newExpanded ? panel : false);
+        setLayoutState({
+            ...layoutState,
+            activeSection: newExpanded ? panel : false,
+            anchorElNav: null
+        })
+
+        // setActiveSection(newExpanded ? panel : false);
     };
 
     return (
         <div>
             <Accordion
-                expanded={activeSection === "about"}
+                expanded={layoutState.activeSection === "about"}
                 onChange={handleChange("about")}
             >
                 <AccordionSummary
@@ -77,7 +83,7 @@ const MainAccordion = (props) => {
                 </AccordionDetails>
             </Accordion>
             <Accordion
-                expanded={activeSection === "projects"}
+                expanded={layoutState.activeSection === "projects"}
                 onChange={handleChange("projects")}
             >
                 <AccordionSummary
@@ -91,7 +97,7 @@ const MainAccordion = (props) => {
                 </AccordionDetails>
             </Accordion>
             <Accordion
-                expanded={activeSection === "contact"}
+                expanded={layoutState.activeSection === "contact"}
                 onChange={handleChange("contact")}
             >
                 <AccordionSummary
