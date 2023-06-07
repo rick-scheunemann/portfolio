@@ -25,6 +25,9 @@ const Main = (props) => {
                         <div>
                             About {`res: ${isDesktop} `}
                             dfl;gkajga;lkjasd;lsakdjfsa;ldkfjsdl;fkjsdal;kfjsadl;kvmsv;lk
+                            sflas ;lkj ;alskdvj as;lk dfl;gkajga;lkjasd;lsakdjfsa;ldkfjsdl;fkjsdal;kfjsadl;kvmsv;lk
+                            sflas ;lkj ;alskdvj as;lk dfl;gkajga;lkjasd;lsakdjfsa;ldkfjsdl;fkjsdal;kfjsadl;kvmsv;lk
+                            sflas ;lkj ;alskdvj as;lk dfl;gkajga;lkjasd;lsakdjfsa;ldkfjsdl;fkjsdal;kfjsadl;kvmsv;lk
                             sflas ;lkj ;alskdvj as;lk
                         </div>
                     </Grid>
@@ -34,8 +37,10 @@ const Main = (props) => {
                     </Grid>
                     <Grid item id="contact-scroll">
                         <div>
-                            Contact About
+                            Contact
                             dfl;gkajga;lkjasd;lsakdjfsa;ldkfjsdl;fkjsdal;kfjsadl;kvmsv;lk
+                            sflas ;lkj ;alskdvj as;lk dfl;gkajga;lkjasd;lsakdjfsa;ldkfjsdl;fkjsdal;kfjsadl;kvmsv;lk
+                            sflas ;lkj ;alskdvj as;lk dfl;gkajga;lkjasd;lsakdjfsa;ldkfjsdl;fkjsdal;kfjsadl;kvmsv;lk
                             sflas ;lkj ;alskdvj as;lk
                         </div>
                     </Grid>

@@ -42,7 +42,8 @@ const Header = (props) => {
         console.log("handleButtonScrollTo: ", event.currentTarget.id);
 
         const section = document.querySelector( `#${event.currentTarget.id}-scroll` );
-        section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+        section.scrollIntoView(true);
+        // section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
 
         setLayoutState({
             ...layoutState,
@@ -54,7 +55,8 @@ const Header = (props) => {
         console.log("handleCloseAndScroll: ", event.currentTarget.id);
 
         const section = document.querySelector( `#${event.currentTarget.id}-scroll` );
-        section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+        section.scrollIntoView(true);
+        // section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
 
         setLayoutState({
             ...layoutState,
